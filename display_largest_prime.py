@@ -191,7 +191,7 @@ def mersenne_prime_display():
                     g.write("<br>\n")
                     digit_count = 0
                     line_count += 1
-                if line_count == 1000:
+                if line_count == 10000:
                     f.write("<br><br>\n<a href=\"large-prime-page-"+str(file_count+1)+".html\">\n<\body>\n<\html>")
                     line_count = 0
                     file_count += 1
