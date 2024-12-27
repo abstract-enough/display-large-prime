@@ -70,7 +70,6 @@ def write_2_to_the_m(
         os.remove("temp_4.txt")
         os.rename(result_file, "temp_4.txt")
 
-
 def add_files(
             add_smaller_file,
             add_larger_file,
@@ -188,17 +187,17 @@ def mersenne_prime_display():
             digit_count = 0
             line_count = 0
             file_count = 1
-            file.seek(0, 2)  # Go to the end of the file
-            position = file.tell()  # end of file
+            g.seek(0, 2)  # Go to the end of the file
+            position = g.tell()  # end of file
 
             while position > 0:
                 position -= 1
-                file.seek(position)
-                digit = file.read(1)
-                g.write(digit)
+                g.seek(position)
+                digit = g.read(1)
+                f.write(digit)
                 digit_count += 1
                 if digit_count == 100:
-                    g.write("<br>\n")
+                    f.write("<br>\n")
                     digit_count = 0
                     line_count += 1
                 if line_count == 10000:
@@ -218,12 +217,12 @@ def mersenne_prime_display():
                 while position > 0:
 
                     position -= 1
-                    file.seek(position)
-                    digit = file.read(1)
-                    g.write(digit)
+                    g.seek(position)
+                    digit = g.read(1)
+                    f.write(digit)
                     digit_count += 1
                     if digit_count == 100:
-                       g.write("<br>\n")
+                       f.write("<br>\n")
                        digit_count = 0
                        line_count += 1
                        if line_count == 10000:
