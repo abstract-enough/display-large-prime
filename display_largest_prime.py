@@ -94,7 +94,7 @@ def mersenne_prime_display(merseene_prime_list):
 
 
 
-merseene_prime_list = mersenne_prime_write(136279841)
+merseene_prime = mersenne_prime_write(136279841)
 
 with open("large_prime_number.txt", "w") as f:
   f.write(str(merseene_prime))
