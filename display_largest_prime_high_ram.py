@@ -1,143 +1,43 @@
+import matplotlib.pyplot as plt
+%matplotlib inline
+
 import os
 import shutil
-
-#O(n^2) test
-
-def test_mersenne_n(
-    n, mersenne_prime_list
-):
-
-    #note
-    #(2^n)-1=2^0+2^1+...+2^(n-1)
-
-    #write 1 (2^0) to temp_1_list
-    temp_1_list = [1]
-
-    binary_power_start=1
-    binary_power_end=n-1
-    for binary_power in range(binary_power_start, \
-    binary_power_end+1):
-
-        print(
-            "test",
-            binary_power,
-            "of",
-            binary_power_end)
-
-        #write binary power to temp_2_list
-        temp_2_list = write_2_to_the_m(
-            m=binary_power
-        )
-
-        sum_list = add_lists(
-            add_1=temp_1_list,
-            add_2=temp_2_list
-            )
-
-        
-        temp_1_list = sum_list
-
-    verify_equality(
-        temp_1.temp_1_list,
-        merseene_prime_list)
-
-
-def write_2_to_the_m(
-    m,
-    print_state
-):
-
-    #write 2 (2^1) to temp_4_list
-    power_of_two_list = [1]
-
-    for multiplication in range(m):
-        if print_state:
-            print(
-                "step",
-                multiplication,
-                "of",
-                m)
-        power_of_two_list = times_2(power_of_two_list)
-
-    return power_of_two_list
-
-def add_lists(
-            add_smaller_list,
-            add_larger_list,
-            ):
-
-    small_count = len(add_smaller_list)
-    large_count = len(add_larger_list)
-
-  
-    for difference in \
-    range(large_count-small_count):
-        add_smaller_list.append(0)
-
-    
-    sum_list = []
-    
-    r = 0
-
-    for i in large_count:
-
-        a = add_smaller_list[i]
-        b = add_larger_list[i]
-        c = a+b+r
-        r=c//10
-        c=c%10
-        sum_list.append(c)
-
-    sum_list.append(r)
-
-    return sum_list
-
-def times_2(in_list):
-
-    
-
-    out_list = add_files(
-            add_smaller_list=in_file,
-            add_larger_list=in_file,
-            )
-
-    return out_list
-
-
-def verify_equality(
-        test_list,
-        merseene_prime_list):
-
-    passed = True
-    if len(test_list) != len(merseene_prime_list):
-        passed = False
-
-    if passed:
-
-      for i in range(len(test_list)):
-        if test_list[i] != mersenne_prime_list[i]:
-            passed = False
-            break
-
-    print("Test result", passed_test)
-
+import time
 
 #O(n) printer
 def mersenne_prime_write(n):
 
+    #2^n
+    
     #using 1x2x2…
-    write_2_to_the_m(n,True)
+    merseene_prime_list = [1]
+    power = 1
 
-    merseene_prime_list = subtract_one(merseene_prime_list)
+    start_time = time.time()
+    indices = []
+    times = []
+    for i in range(1,n):
+        if i == power:
+          print("multiplication", "{:e}".format(i), "of", "{:e}".format(n))
+          indices.append(i)
+          times.append(time.time()-start_time)
+          plt.plot(indices,times)
+          plt.show()
+          power = power * 10
+        r = 0
+        for j in range(len(merseene_prime_list)):
+            temp = merseene_prime_list[j]*2 + r
+            r = temp//10
+            temp = temp%10
+            merseene_prime_list[j] = temp
+        merseene_prime_list.append(r)
+        
+    #-1
+    merseene_prime_list[0] = merseene_prime_list[0] - 1
 
     return merseene_prime_list
 
-
-def subtract_one(subtract_list):
-
-    subtract_list[0] -= 1
-    
-    return subtract_list
 
 def mersenne_prime_display(merseene_prime_list):
 
@@ -202,4 +102,8 @@ def mersenne_prime_display(merseene_prime_list):
 
 merseene_prime_list = mersenne_prime_write(136279841)
 
-test_mersenne_n(136279841,"merseene_prime_file.txt")
+with open("large_prime_number.txt", "w") as f:
+  start_index = len(merseene_prime_list)-1
+  end_index = 0
+  for i in range(start_index,end_index-1,-1):
+    f.write(str(merseene_prime_list[i]))
