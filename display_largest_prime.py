@@ -39,22 +39,29 @@ def test_mersenne_n(
         os.remove("temp_1.txt")
         os.remove("temp_2.txt")
         os.rename("temp_3.txt", "temp_1.txt")
-   
+
     verify_equality(
         temp_1.txt,
         merseene_prime_file)
-    
+
 
 def write_2_to_the_m(
     result_file,
-    m
+    m,
+    print_state
 ):
-    
+
     #write 2 (2^1) to temp_4.txt
     with open("temp_4.txt", "w") as f:
         f.write("1")
 
     for multiplication in range(m):
+        if print_state:
+            print(
+                "step",
+                multiplication,
+                "of",
+                m)
         times_2(
             in_file="temp_4.txt",
             out_file=result_file
@@ -97,19 +104,22 @@ def add_files(
         a = f.read(1)
         b = g.read(1)
         r = 0
-        
+
         while a >= '0' and a <= '9':
-        
+
             c = int(a)+int(b)+r
             r=c//10
             c=c%10
             h.write(str(c))
 
+            a = f.read(1)
+            b = g.read(1)
+
         h.write(str(r))
 
 
 def times_2(in_file, out_file):
-    
+
     shutil.copy(in_file, "temp_6.txt")
 
     add_files(
@@ -132,9 +142,9 @@ def verify_equality(
         b = g.read(1)
 
         passed = True
-        
+
         while a >= '0' and a <= '9':
-        
+
             if a!=b:
                 passed = False
                 break
@@ -145,10 +155,10 @@ def verify_equality(
 
 #O(n) printer
 def mersenne_prime_write(n):
-    
+
     #using 1x2x2…
     write_2_to_the_m(
-        "merseene_prime_file.txt",n)
+        "merseene_prime_file.txt",n,True)
 
     subtract_one("merseene_prime_file.txt")
 
@@ -166,9 +176,9 @@ def subtract_one(subtract_file):
             g.write(digit)
 
 def mersenne_prime_display():
-    
+
     with open("mersenne_prime_file.txt", "r") as g:
-    
+
         with \
         open("large-prime-number.html", "r") as f:
 
@@ -230,5 +240,3 @@ def mersenne_prime_display():
 mersenne_prime_write(136279841)
 
 test_mersenne_n(136279841,"merseene_prime_file.txt")
-
-    
