@@ -17,7 +17,9 @@ def mersenne_prime_write(n):
     start_time = time.time()
     indices = []
     times = []
-    for i in range(1,n):
+    start_power = 1
+    end_power = n
+    for i in range(start_power,end_power+1):
         if i == power:
           print("multiplication", "{:e}".format(i), "of", "{:e}".format(n))
           indices.append(i)
