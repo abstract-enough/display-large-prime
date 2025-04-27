@@ -1,3 +1,5 @@
+import time
+
 def mersenne_prime_write(n):
 
     #2^n
