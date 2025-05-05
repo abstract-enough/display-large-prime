@@ -68,7 +68,7 @@ def mersenne_prime_display(merseene_prime_list):
         f.write("<br><br>end</body>\n</html>")
 
 
-with open("largest_known_prime_number.txt", "r") as f:
+with open("large_prime_number_base_conversion_method.txt", "r") as f:
     prime_string = f.read()
 
 

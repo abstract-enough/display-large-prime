@@ -25,5 +25,5 @@ def mersenne_prime_write(n):
 
 merseene_prime = mersenne_prime_write(136279841)
 
-with open("large_prime_number.txt", "w") as f:
+with open("large_prime_number_base_conversion_method.txt", "w") as f:
   f.write(str(merseene_prime))
